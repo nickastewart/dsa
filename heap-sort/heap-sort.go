@@ -3,31 +3,31 @@ package main
 import "fmt"
 
 func main() {
-	heap := []int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7}
+	heap := []int{4, 9, 5, 17, 1, 3, 2, 16, 9, 10, 14, 8, 7}
 	fmt.Print("Unsorted: ")
 	fmt.Print(heap)
 	fmt.Print("\n")
-	heapSort(heap, 10)
+	maxHeapSort(heap, len(heap))
 
 	fmt.Print("Heap Sorted: ")
 	fmt.Print(heap)
 }
 
-func heapSort(heap []int, n int) {
-	length := n-1
+func maxHeapSort(heap []int, n int) {
+	length := n - 1
 	buildMaxHeap(heap, n)
-	for i := length; i >= 1; i-- {
+	for i := length; i >= 0; i-- {
 		temp := heap[i]
 		heap[i] = heap[0]
 		heap[0] = temp
-		heap := heap[0:i-1]
+		heap := heap[0 : i]
 		maxHeapify(heap, 0)
 	}
 }
 
 func buildMaxHeap(heap []int, n int) {
 	heap = heap[:n]
-	for i := n/2; i >=0; i-- {
+	for i := (n / 2) + 1; i >= 0; i-- {
 		maxHeapify(heap, i)
 	}
 }
